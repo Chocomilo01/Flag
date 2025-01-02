@@ -26,10 +26,24 @@ const deleteProductById = async (id) => {
     return await Product.findByIdAndDelete(id);
 };
 
+const patchProductById = async (id, updates) => {
+    try {
+        const product = await Product.findByIdAndUpdate(
+            id,
+            { $set: updates },
+            { new: true, runValidators: true }
+        );
+        return product;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+
 module.exports = {
     createProduct,
     getAllProducts,
     getProductById,
+    patchProductById,
     updateProductById,
     deleteProductById
 };
