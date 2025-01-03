@@ -5,10 +5,12 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const productRoutes = require('./routes/route'); // Import routes
 const app = express();
+const adminRoutes = require('./routes/adminRoutes');
 
 // Middleware for parsing JSON
 app.use(express.json());
 app.use(cors()); // Enable CORS
+app.use('/api/admin', adminRoutes);
 // Connect to MongoDB
 const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI, {
