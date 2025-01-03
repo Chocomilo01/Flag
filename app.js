@@ -2,12 +2,13 @@ require('dotenv').config(); // Load environment variables from .env file
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const productRoutes = require('./routes/route'); // Import routes
 const app = express();
 
 // Middleware for parsing JSON
 app.use(express.json());
-
+app.use(cors()); // Enable CORS
 // Connect to MongoDB
 const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI, {
